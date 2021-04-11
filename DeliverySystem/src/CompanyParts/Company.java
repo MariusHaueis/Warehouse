@@ -206,7 +206,7 @@ public  class Company {
 	 * @return whether a customer is saved in the customer database. Returntype = boolean
 	 */
 	public boolean newCustomer(String name) {
-		if(customerData.stream().filter(cust -> cust.getName() == name).collect(Collectors.toList()).isEmpty()) {		
+		if(customerData.stream().map(cust -> cust.getName() == name).collect(Collectors.toList()).isEmpty()) {		
 				return true;
 		}			
 		return false;

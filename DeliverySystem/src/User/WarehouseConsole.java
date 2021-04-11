@@ -29,13 +29,15 @@ public class WarehouseConsole {
 	private ItemType itemType;
 	private JFrame frame;
 	private JPanel panel;
+	private boolean hasTakenAction = false;
 
 	public WarehouseConsole() {
 		// Object creation(SetUp)
 		frame = new JFrame();
 		panel = new JPanel();
 		warehouseApp = new WarehouseApp(10, 20, 30);
-		
+	}
+	public void showGui(){		
 		exitButton = new JButton("Order");
 		exitButton.setFont(new Font("SansSerif", Font.BOLD, 35));
 		deliveryButton = new JButton("Delivery");
@@ -61,7 +63,15 @@ public class WarehouseConsole {
 		panel.add(deliveryButton);
 		panel.add(number);
 		panel.add(product);
-
+		
+		// Creates the window.
+				frame.setSize(2000, 1000);
+				frame.add(panel, BorderLayout.CENTER);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setTitle("Amazon");
+				frame.setVisible(true);
+	}
+public void takeAction() {
 		// ActionListeners
 		exitButton.addActionListener(new ActionListener() {
 			@Override
@@ -77,8 +87,10 @@ public class WarehouseConsole {
 					} else {
 						System.out.println("Please insert a valide value into the Producttype field.");
 					}
+					hasTakenAction=true;
 					warehouseApp.exits(itemType, Integer.parseInt(numberE.getText()),
 							String.valueOf(nameE.getAccessibleContext()));
+					
 				}
 			}
 		});
@@ -97,20 +109,20 @@ public class WarehouseConsole {
 					} else {
 						System.out.println("Please insert a valide value into the Producttype field.");
 					}
+					hasTakenAction=true;
 					warehouseApp.delivery(itemType, Integer.parseInt(number.getText()));
+					
 				}
 			}
 		});
 
-		// Creates the window.
-		frame.setSize(2000, 1000);
-		frame.add(panel, BorderLayout.CENTER);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Amazon");
-		frame.setVisible(true);
+		
 
 		//TODO
 		// Ausgabefenster bzw Bestellbestätigung
 	//JOptionPane.showMessageDialog(null, "Vielen Dank für ihre Bestellung" , "Ihre Bestellung", JOptionPane.PLAIN_MESSAGE);
 	}
+public boolean getHasTakenAction() {
+	return hasTakenAction;
+}
 }

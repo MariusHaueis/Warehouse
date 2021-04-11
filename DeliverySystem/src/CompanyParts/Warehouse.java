@@ -75,6 +75,7 @@ public final class Warehouse {
 			stock.set(freeCompartement, Optional.of(item));
 			compartement.put(item.getIdentification(), freeCompartement);
 			numberOfItems++;
+			System.out.println("Item has been added.");
 			
 		}	
 	/**
@@ -95,6 +96,7 @@ public final class Warehouse {
 		compartement.remove(stock.get(compartmentNumber).get().getIdentification());
 		stock.set(compartmentNumber, Optional.empty());
 		numberOfItems--;
+		System.out.println("Item has been sended.");
 	}
 	/**
 	 * This method lets you see which item is at any given compartmentNumber.
